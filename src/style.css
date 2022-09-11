@@ -22,6 +22,9 @@
             margin: 0;
             padding: 0;
         }
+        a{
+            text-decoration:none;
+        }
         .weather-temperature strong{
             font-size: 64px;
             line-height: 1;
@@ -29,11 +32,11 @@
             font-weight: 400px;
         }
         
-        .weather-temperature.units{
-            font-size: 18px;
-            position:relative;
-            margin-top:-30px;
-        }
+        .weather-temperature .units {
+        position: relative;
+        font-size: 16px;
+        top: -30px;
+}
         .top-tier{
             margin-bottom: 20px;
         }
