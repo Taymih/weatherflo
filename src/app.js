@@ -6,13 +6,23 @@ axios.get(apiUrl).then(displayFigures);
 function displayFigures(response) {
     console.log(response.data);
     let temperatureElement = document.querySelector("#temperature");
-    temperatureElement.innerHTML =Math.round(response.data.main.temp);
-    let humidityElement = document.querySelector("#humidity");
-    humidityElement.innerHTML =response.data.main.humidity;
+    let humidityElement = document.querySelector("#humidity"); 
     let windElement = document.querySelector("#wind");
-    windElement.innerHTML = Math.round(response.data.wind.speed);
     let skyElement = document.querySelector("#sky");
-    console.log(skyElement);
+    let cityName = document.querySelector("#city-name");
+    let iconElement = document.querySelector("#icon");
+    temperatureElement.innerHTML = Math.round(response.data.main.temp);
+    humidityElement.innerHTML = response.data.main.humidity;
+    windElement.innerHTML = Math.round(response.data.wind.speed);
     skyElement.innerHTML = response.data.weather[0].description;
+    cityName.innerHTML = city;
+    iconElement.setAttribute(
+      "src",
+      `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+    iconElement.setAttribute(
+      "alt",
+      response.data.weather[0].description,
+    );
 };
 
