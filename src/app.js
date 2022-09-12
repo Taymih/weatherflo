@@ -62,7 +62,6 @@ search("Paris");
 function queryInput(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#enter");
-  console.log(cityInput.value);
   search(cityInput.value);
 };
 
