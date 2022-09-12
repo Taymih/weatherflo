@@ -65,3 +65,26 @@
         .top-tier{
             margin-bottom: 20px;
         }
+        .weather.forecast{
+            text-align:center;
+            font-size:16px;
+            margin-top:20px;
+        }
+        .weather-forecast-date{
+            color:black;
+            opacity:0.5;
+            font-weight:100;
+        }
+        .weather-forecast-temperatures-max{
+            color:black;
+         
+        }
+        .weather-forecast-temperatures-min{
+            color:black;
+            font-size: 13px;
+            opacity:0.5;
+        }
+        #fake-icon{
+            width:36px;
+            margin:0 auto;
+        }

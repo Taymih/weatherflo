@@ -2,11 +2,11 @@ function formatDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
   if (hours < 10) {
-    let hours = `0${hours}`;
+    hours = `0${hours}`;
   }
   let minutes = date.getMinutes();
   if (minutes < 10) {
-    let minutes = `0${minutes}`;
+     minutes = `0${minutes}`;
   }
   let days = [
     "Sunday",
@@ -51,6 +51,13 @@ function search(city) {
   axios.get(apiUrl).then(displayFigures);
 }
 
+search("Paris");
+function queryInput(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#enter");
+  search(cityInput.value);
+}
+
 function fahrenheitFigure(event) {
   event.preventDefault();
   let fahrenheit = document.querySelector("#temperature");
@@ -66,13 +73,16 @@ function celsiusFigure(event) {
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
 }
-
-search("Paris");
-function queryInput(event) {
-  event.preventDefault();
-  let cityInput = document.querySelector("#enter");
-  search(cityInput.value);
+function searchLocation(position) {
+  let apiKey = "628687b1313ed233e8a7594970069fef";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayFigures);
 }
+function getPosition(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
+}
+
 
 celsiusTemperature = null;
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
@@ -83,3 +93,7 @@ celsiusLink.addEventListener("click", celsiusFigure);
 
 let searchForm = document.querySelector("#search-panel");
 searchForm.addEventListener("submit", queryInput);
+
+let currentPosition = document.querySelector("button");
+currentPosition.addEventListener("click", getPosition);
+
