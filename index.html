@@ -13,10 +13,18 @@
     <div class="container">
         <div class="weather-app-container">
             <div class="weather-app">
+                <form id="search-panel" class="mb-3">
+                      <div class="row">
+                    <div class="col-9">
+                    <input type="search" class="form-control" placeholder="Enter City Name" id="enter">
+                    </div>
+                    <div class="col-3">
+                    <input type="submit" class="btn btn-primary w-100" value="search" id="look">
+                    </div>
+                    </div>
+                </form>
                 <div class="top-tier">
-            <h1 id="city-name">
-                Lagos
-            </h1>
+            <h1 id="city-name"></h1>
             <ul>
                 <li id="date">Thursday 14:00</li>
                 <li id="sky">Cloudy</li>
