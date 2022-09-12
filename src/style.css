@@ -13,7 +13,7 @@
 
         li{
             list-style:none;
-            color: rgb(135, 135, 135);
+            color: rgb(33 33 33);
             font-size: 16px;
             font-weight: 100;
             line-height: 19px;
@@ -48,11 +48,20 @@
             font-weight: 400px;
         }
         
+        
         .weather-temperature .units {
         position: relative;
         font-size: 16px;
         top: -30px;
 }
+         .weather-temperature .active{
+            color:rgb(33 33 33);
+            cursor:default;
+         }
+         .weather-temperature .active:hover{
+            text-decoration: none;
+         }
+
         .top-tier{
             margin-bottom: 20px;
         }
