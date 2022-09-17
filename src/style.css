@@ -1,5 +1,6 @@
    body{
         font-family: arial,sans-serif;
+    
         }
         .weather-app-container{
             max-width:600px;
@@ -9,6 +10,7 @@
         padding: 20px;
         border: 1px solid rgb(235,235,235);
         border-radius: 5px;
+        background-image:-webkit-radial-gradient(rgb(49, 221, 66), rgb(237, 207, 12));
         }
 
         li{
@@ -75,8 +77,8 @@
         }
         .weather-forecast-date{
             color:black;
-            opacity:0.5;
-            font-weight:100;
+            opacity:0.8;
+            font-weight:200;
         }
         .weather-forecast-temperatures-max{
             color:black;
@@ -85,7 +87,8 @@
         .weather-forecast-temperatures-min{
             color:black;
             font-size: 14px;
-            opacity:0.5;
+            opacity:0.8;
+            font-weight:200;
         }
         #image{
             padding:0;

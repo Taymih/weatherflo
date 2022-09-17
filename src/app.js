@@ -127,18 +127,6 @@ function celsiusFigure(event) {
   fahrenheitLink.classList.add("active");
 }
 
-function searchLocation(position) {
-  let apiKey = "8161b4309ee03faae957729ba7104797";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayFigures);
-  console.log(apiUrl);
-}
-
-function getPosition(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(searchLocation);
-}
-
 celsiusTemperature = null;
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", fahrenheitFigure);
