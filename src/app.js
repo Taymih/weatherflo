@@ -52,11 +52,11 @@ function displayFigures(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
   celsiusTemperature = response.data.main.temp;
-  displayForecast();
+  checkForecast(response.data.coords);
 }
 function checkForecast(coordinates) {
   let apiKey = "628687b1313ed233e8a7594970069fef";
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = ;
   axios.get(apiUrl).then(displayForecast);
 };
 
