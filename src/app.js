@@ -21,6 +21,15 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 };
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+
 function displayFigures(response) {
   console.log(response.data);
   let temperatureElement = document.querySelector("#temperature");
@@ -34,54 +43,45 @@ function displayFigures(response) {
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
   skyElement.innerHTML = response.data.weather[0].description;
-    cityName.innerHTML = response.data.name;
-    dateElement.innerHTML = formatDate(response.data.dt * 1000);
-    
+  cityName.innerHTML = response.data.name;
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  checkForecast(response.data.coord);
   iconElement.setAttribute(
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
   celsiusTemperature = response.data.main.temp;
-  checkForecast(response.data.coord);
+  displayForecast();
 }
 function checkForecast(coordinates) {
-  apiKey = "628687b1313ed233e8a7594970069fef";
-  apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayForecast);
+  let apiKey = "628687b1313ed233e8a7594970069fef";
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 };
-function displayForecast(response) {
-  console.log(response.data.daily);
+
+function displayForecast() {
   let forecastElement = document.querySelector("#forecast");
-
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon"];
-
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thurs"];
   let forecastHTML = `<div class="row">`;
   days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-      <div class="col-2">
-        <div class="weather-forecast-date">${day}</div>
-        <img
-          src="http://openweathermap.org/img/wn/02d@2x.png"
-          alt=""
-          width="42"
-        />
-        <div class="weather-forecast-temperatures">
-          <span class="weather-forecast-temperature-max"> 18° </span>
-          <span class="weather-forecast-temperature-min"> 12° </span>
-        </div>
-      </div>
-  `;
+    forecastHTML = forecastHTML + `
+                    <div class="col-2">
+                        <div class="weather-forecast-date">
+                            ${day}
+                        </div>
+                        <img src="#" alt="#" width="42"/>
+                        <div class="weather-temperatures">
+                            <span class="weather-forecast-temperatures-max">24°</span>
+                            <span class="weather-forecast-temperatures-min">18°</span>
+                        </div>
+                    </div>
+                    `;
   });
-
   forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
-}
-
-
+    forecastElement.innerHTML = forecastHTML;
+};
+  
 function search(city) {
   let apiKey = "628687b1313ed233e8a7594970069fef";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -110,11 +110,13 @@ function celsiusFigure(event) {
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
 }
+
 function searchLocation(position) {
   let apiKey = "628687b1313ed233e8a7594970069fef";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayFigures);
 }
+
 function getPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchLocation);
